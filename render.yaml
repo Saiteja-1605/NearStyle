@@ -12,6 +12,8 @@ services:
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
       - key: NODE_ENV
         value: production
       - key: MONGO_URI
@@ -28,12 +30,14 @@ services:
     name: nearstyle-frontend
     runtime: static
     rootDir: frontend
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: npm install --include=dev --include=optional && npm run build
     staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
     envVars:
+      - key: NODE_VERSION
+        value: 22.14.0
       - key: VITE_API_URL
         value: https://nearstyle-backend.onrender.com

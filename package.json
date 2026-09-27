@@ -27,5 +27,8 @@
     "local-stores"
   ],
   "author": "NearStyle Team",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  }
 }
