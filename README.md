@@ -128,7 +128,7 @@ nearstyle/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/nearstyle.git
+git clone https://github.com/Saiteja-1605/NearStyle.git
 cd nearstyle
 ```
 
@@ -187,7 +187,7 @@ git init
 git add .
 git commit -m "Initial commit of NearStyle complete marketplace"
 git branch -M main
-git remote add origin https://github.com/<your-username>/nearstyle.git
+git remote add origin https://github.com/Saiteja-1605/NearStyle.git
 git push -u origin main
 ```
 
