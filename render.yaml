@@ -26,11 +26,8 @@ services:
   # ----------------------------------------------------
   # 2. NearStyle Frontend (React + Vite Static Site)
   # ----------------------------------------------------
-  - type: web
+  - type: static
     name: nearstyle-frontend
-    runtime: static
-    region: oregon
-    plan: free
     rootDir: frontend
     buildCommand: npm install --include=dev && npm run build
     staticPublishPath: dist
