@@ -30,7 +30,7 @@ async function runReservationTests() {
     const testOwner = await User.create({
       name: 'Test Shopkeeper',
       email: `test_sk_${Date.now()}@test.com`,
-      password: 'hash',
+      password: 'hashedPassword123',
       role: 'SHOPKEEPER',
     });
 
@@ -49,14 +49,14 @@ async function runReservationTests() {
     const customerA = await User.create({
       name: 'Customer A',
       email: `customerA_${Date.now()}@test.com`,
-      password: 'hash',
+      password: 'hashedPassword123',
       role: 'CUSTOMER',
     });
 
     const customerB = await User.create({
       name: 'Customer B',
       email: `customerB_${Date.now()}@test.com`,
-      password: 'hash',
+      password: 'hashedPassword123',
       role: 'CUSTOMER',
     });
 
