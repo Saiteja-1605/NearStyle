@@ -1,13 +1,10 @@
-# Render Blueprint Specification for NearStyle
-# Deploys both NearStyle Backend (Web Service) and NearStyle Frontend (Static Site)
-
 services:
-  # ---------------------------------------------------------------------------
-  # 1. NearStyle Backend REST API (Web Service)
-  # ---------------------------------------------------------------------------
+  # ----------------------------------------------------
+  # 1. NearStyle Backend REST API (Node.js Web Service)
+  # ----------------------------------------------------
   - type: web
     name: nearstyle-backend
-    env: node
+    runtime: node
     region: oregon
     plan: free
     rootDir: backend
@@ -20,29 +17,27 @@ services:
       - key: PORT
         value: 10000
       - key: MONGO_URI
-        sync: false # Set in Render Dashboard: Atlas MongoDB Connection String
+        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        fromStaticSite:
-          name: nearstyle-frontend
-          property: url
+        value: https://nearstyle-frontend.onrender.com
 
-  # ---------------------------------------------------------------------------
-  # 2. NearStyle Frontend (Static Site)
-  # ---------------------------------------------------------------------------
-  - type: static
+  # ----------------------------------------------------
+  # 2. NearStyle Frontend (React + Vite Static Site)
+  # ----------------------------------------------------
+  - type: web
     name: nearstyle-frontend
+    runtime: static
+    region: oregon
+    plan: free
     rootDir: frontend
     buildCommand: npm install --include=dev && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: nearstyle-backend
-          property: url
+        value: https://nearstyle-backend.onrender.com
