@@ -1,7 +1,16 @@
 import axios from 'axios';
 
-// Use environment variable VITE_API_URL if set (production Render URL), otherwise fallback to empty string (uses Vite proxy)
-const baseURL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api';
+// Resolve base API URL reliably in both development and production Render environments
+const getBaseUrl = (): string => {
+  const envUrl = (import.meta.env.VITE_API_URL || '').trim();
+  if (!envUrl) {
+    return '/api';
+  }
+  const cleanUrl = envUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+};
+
+const baseURL = getBaseUrl();
 
 export const api = axios.create({
   baseURL,
