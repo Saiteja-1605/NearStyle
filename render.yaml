@@ -14,8 +14,6 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
       - key: MONGO_URI
         sync: false
       - key: JWT_SECRET
@@ -26,8 +24,9 @@ services:
   # ----------------------------------------------------
   # 2. NearStyle Frontend (React + Vite Static Site)
   # ----------------------------------------------------
-  - type: static
+  - type: web
     name: nearstyle-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install --include=dev && npm run build
     staticPublishPath: dist
